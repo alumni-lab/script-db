@@ -23,4 +23,4 @@ def randCharacter() :
             character_names.add(name[0].text)
             # print(name[0].text)
 
-    return random.choice(tuple(character_names))
+    return character_names
