@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 
 
-def randCharacter() :
+def allCharacters() :
     imdb = requests.get('https://www.imdb.com/title/tt0120737/fullcredits?ref_=tt_cl_sm#cast')
 
     text = imdb.text
