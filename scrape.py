@@ -98,8 +98,8 @@ def insert_quote(quote):
     return quote_id
 
 # insert_movie("The Lord of the Rings: The Fellowship of the Ring (2001)")
-insert_character("Golem")
-insert_quote("My Precious...")
+# insert_character("Golem")
+# insert_quote("My Precious...")
 
 ####################
 
@@ -112,6 +112,9 @@ names = character.allCharacters()
 
 for name in names :
         if name :
+
+                insert_character(name)
+
                 quote_dictionary[name.upper()] = []
                 quotes = soup.find_all("b", text = re.compile(f'.*{name.upper()}.*'))
                 
@@ -130,6 +133,9 @@ for name in names :
                                 quote_text_joined = " ".join(quote_text_stripped)
 
                                 if quote_text_joined != " " :
+
+                                        insert_quote(quote_text_joined)
+
                                         quote_dictionary[name.upper()].append(quote_text_joined)
                         
 
