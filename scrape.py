@@ -41,7 +41,65 @@ def insert_movie(title):
  
     return movie_id
 
-insert_movie("The Lord of the Rings: The Fellowship of the Ring (2001)")
+def insert_character(name):
+    sql = """INSERT INTO characters(name)
+             VALUES(%s) RETURNING character_id;"""
+    conn = None
+    character_id = None
+    try:
+        # read database configuration
+        params = config()
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(**params)
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql, (name,))
+        # get the generated id back
+        character_id = cur.fetchone()[0]
+        # commit the changes to the database
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+ 
+    return character_id
+
+def insert_quote(quote):
+    sql = """INSERT INTO quotes(quote)
+             VALUES(%s) RETURNING quote_id;"""
+    conn = None
+    quote_id = None
+    try:
+        # read database configuration
+        params = config()
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(**params)
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql, (quote,))
+        # get the generated id back
+        quote_id = cur.fetchone()[0]
+        # commit the changes to the database
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+ 
+    return quote_id
+
+# insert_movie("The Lord of the Rings: The Fellowship of the Ring (2001)")
+insert_character("Golem")
+insert_quote("My Precious...")
 
 ####################
 
