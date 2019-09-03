@@ -28,3 +28,12 @@ source env/bin/activate.fish # For Nima
 ```
 
 when you start development.
+
+To start scraping, create a "quote_chat" database on PSQL and run
+
+```
+python3 connect-db.py
+python3 create-tables.py
+```
+
+currently, inserting rows are hard-coded on **scrape.py**
