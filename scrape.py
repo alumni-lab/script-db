@@ -69,9 +69,9 @@ def insert_character(name):
  
     return id
 
-def insert_quote(quote):
-    sql = """INSERT INTO quotes(quote)
-             VALUES(%s) RETURNING id;"""
+def insert_quote(quote, characterID):
+    sql = """INSERT INTO quotes(quote, character_id)
+             VALUES(%s, %s) RETURNING id;"""
     conn = None
     id = None
     try:
@@ -82,7 +82,7 @@ def insert_quote(quote):
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql, (quote,))
+        cur.execute(sql, (quote, characterID))
         # get the generated id back
         id = cur.fetchone()[0]
         # commit the changes to the database
@@ -113,7 +113,7 @@ names = character.allCharacters()
 for name in names :
         if name :
 
-                insert_character(name)
+                characterID = insert_character(name)
 
                 quote_dictionary[name.upper()] = []
                 quotes = soup.find_all("b", text = re.compile(f'.*{name.upper()}.*'))
@@ -134,9 +134,9 @@ for name in names :
 
                                 if quote_text_joined != " " :
 
-                                        insert_quote(quote_text_joined)
+                                        insert_quote(quote_text_joined, characterID)
 
                                         quote_dictionary[name.upper()].append(quote_text_joined)
                         
 
-print(quote_dictionary)
+# print(quote_dictionary)

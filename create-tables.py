@@ -6,7 +6,7 @@ def create_tables():
     """ create tables in the PostgreSQL database"""
     commands = (
         """
-        DROP TABLE movies, characters, quotes
+        DROP TABLE IF EXISTS movies, characters, quotes
         """,
         """
         CREATE TABLE movies (
