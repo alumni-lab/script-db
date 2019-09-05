@@ -15,7 +15,7 @@ print("Database opened successfully")
 def insert_movie(title):
     """ insert a new vendor into the vendors table """
     sql = """INSERT INTO movies(title)
-             VALUES(%s) RETURNING movie_id;"""
+             VALUES(%s) RETURNING id;"""
     conn = None
     movie_id = None
     try:
@@ -28,7 +28,7 @@ def insert_movie(title):
         # execute the INSERT statement
         cur.execute(sql, (title,))
         # get the generated id back
-        movie_id = cur.fetchone()[0]
+        id = cur.fetchone()[0]
         # commit the changes to the database
         conn.commit()
         # close communication with the database
@@ -39,13 +39,13 @@ def insert_movie(title):
         if conn is not None:
             conn.close()
  
-    return movie_id
+    return id
 
 def insert_character(name):
     sql = """INSERT INTO characters(name)
-             VALUES(%s) RETURNING character_id;"""
+             VALUES(%s) RETURNING id;"""
     conn = None
-    character_id = None
+    id = None
     try:
         # read database configuration
         params = config()
@@ -56,7 +56,7 @@ def insert_character(name):
         # execute the INSERT statement
         cur.execute(sql, (name,))
         # get the generated id back
-        character_id = cur.fetchone()[0]
+        id = cur.fetchone()[0]
         # commit the changes to the database
         conn.commit()
         # close communication with the database
@@ -67,13 +67,13 @@ def insert_character(name):
         if conn is not None:
             conn.close()
  
-    return character_id
+    return id
 
 def insert_quote(quote):
     sql = """INSERT INTO quotes(quote)
-             VALUES(%s) RETURNING quote_id;"""
+             VALUES(%s) RETURNING id;"""
     conn = None
-    quote_id = None
+    id = None
     try:
         # read database configuration
         params = config()
@@ -84,7 +84,7 @@ def insert_quote(quote):
         # execute the INSERT statement
         cur.execute(sql, (quote,))
         # get the generated id back
-        quote_id = cur.fetchone()[0]
+        id = cur.fetchone()[0]
         # commit the changes to the database
         conn.commit()
         # close communication with the database
@@ -95,7 +95,7 @@ def insert_quote(quote):
         if conn is not None:
             conn.close()
  
-    return quote_id
+    return id
 
 # insert_movie("The Lord of the Rings: The Fellowship of the Ring (2001)")
 # insert_character("Golem")
@@ -139,4 +139,4 @@ for name in names :
                                         quote_dictionary[name.upper()].append(quote_text_joined)
                         
 
-# print(quote_dictionary)
+print(quote_dictionary)

@@ -1,6 +1,8 @@
 Project setup
 =============
 
+Create database.ini file based on database.ini.example
+
 On Mac:
 
 ```
@@ -32,8 +34,6 @@ when you start development.
 To start scraping, create a "quote_chat" database on PSQL and run
 
 ```
-python3 connect-db.py
 python3 create-tables.py
+python3 scrape.py
 ```
-
-currently, inserting rows are hard-coded on **scrape.py**

@@ -1,0 +1,5 @@
+[postgresql]
+host=localhost
+database=quote_chat
+user=postgres
+password=postgres

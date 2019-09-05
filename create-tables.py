@@ -6,21 +6,25 @@ def create_tables():
     """ create tables in the PostgreSQL database"""
     commands = (
         """
+        DROP TABLE movies, characters, quotes
+        """,
+        """
         CREATE TABLE movies (
-            movie_id SERIAL PRIMARY KEY,
+            id SERIAL PRIMARY KEY,
             title VARCHAR(255) NOT NULL
         )
         """,
         """ 
         CREATE TABLE characters (
-            character_id SERIAL PRIMARY KEY,
+            id SERIAL PRIMARY KEY,
             name VARCHAR(255) NOT NULL
         )
         """,
         """
         CREATE TABLE quotes (
-            quote_id SERIAL PRIMARY KEY,
-            quote VARCHAR(255) NOT NULL
+            id SERIAL PRIMARY KEY,
+            quote VARCHAR NOT NULL,
+            character_id INTEGER REFERENCES characters(id)
         )
         """)
     conn = None
