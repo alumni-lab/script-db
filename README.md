@@ -31,9 +31,11 @@ source env/bin/activate.fish # For Nima
 
 when you start development.
 
-To start scraping, create a "quote_chat" database on PSQL and run
+To start scraping, **create a "quote_chat" database** on PSQL and run
 
 ```
 python3 create-tables.py
 python3 scrape.py
 ```
+
+Either drop your table, or run create-tables.py again between scrapes
