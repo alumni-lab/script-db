@@ -1,5 +1,6 @@
 [postgresql]
-host=localhost
+host=localhost 
 database=quote_chat
 user=postgres
+port=
 password=postgres

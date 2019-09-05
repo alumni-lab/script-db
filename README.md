@@ -1,7 +1,7 @@
 Project setup
 =============
 
-Create database.ini file based on database.ini.example
+Create database.ini file based on database.ini.example (create local or use details for your heroku database)
 
 On Mac:
 
